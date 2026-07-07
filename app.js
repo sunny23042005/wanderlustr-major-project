@@ -1,6 +1,8 @@
 if(process.env.NODE_ENV != "production") {
    require('dotenv').config();
 }
+const dns = require("dns");
+dns.setServers(["8.8.8.8", "8.8.4.4"]);
 
 
 const express = require("express");
@@ -11,6 +13,7 @@ const methodOverride = require("method-override");
 const ejsMate = require("ejs-mate");
 const ExpressError = require("./utils/ExpressError.js");
 const session = require("express-session");
+const MongoStore = require("connect-mongo").default;
 const flash = require("connect-flash");
 const passport = require("passport");
 const LocalStrategy = require("passport-local");
@@ -23,19 +26,19 @@ const reviewsRouter = require("./routes/review.js");
 const userRouter = require("./routes/user.js");
 
 
-const MONGO_URL = "mongodb://127.0.0.1:27017/wanderlust";
-
-main()
- .then(() => {
-    console.log("connected to DB");
- })
- .catch((err) => {
-    console.log(err);
- });
+//const MONGO_URL = "mongodb://127.0.0.1:27017/wanderlust";
+const dbURL = process.env.ATLASDB_URL;
 
  async function main() {
-    await mongoose.connect(MONGO_URL);
- }
+   console.log("Connecting...");
+   await mongoose.connect(dbURL);
+   console.log(" MongoDB Connected");
+}
+
+main().catch((err) => {
+   console.error(" Connection Failed");
+   console.error(err);
+});
 
  app.set("view engine","ejs");
  app.set("views",path.join(__dirname,"views"));
@@ -43,10 +46,23 @@ main()
  app.use(methodOverride("_method"));
  app.engine('ejs', ejsMate);
  app.use(express.static(path.join(__dirname,"/public")));
+
+ const store = MongoStore.create({
+   mongoUrl: dbURL,
+   crypto: {
+      secret: process.env.SECRET,
+   },
+   touchAfter: 24*3600,
+});
+
+store.on("error", (err) => {
+   console.log("ERROR IN MONGO SESSION STORE", err);
+});
     
  
 const sessionOptions = {
-   secret: "mysupersecretcode",
+   store,
+   secret: process.env.SECRET,
    resave: false,
    saveUninitialized: true,
    cookie: {
@@ -60,6 +76,8 @@ const sessionOptions = {
 // app.get("/", (req, res) => {
 //     res.send("Hi, I am root");
 // });
+
+
 
 app.use(session(sessionOptions));
 app.use(flash());
@@ -109,6 +127,8 @@ app.use((err, req, res, next) => {
 
 
 
-app.listen(8080, () => {
-    console.log("Server is listening to port 8080");
+const port = process.env.PORT || 8080;
+
+app.listen(port, () => {
+   console.log(`Server is listening on port ${port}`);
 });
