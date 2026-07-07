@@ -1,0 +1,47 @@
+@media (max-width: 576px) {
+
+    .col-8.offset-2 {
+        width: 100%;
+        margin: 0;
+        padding: 1rem;
+    }
+
+    .edit-btn {
+        width: 100%;
+    }
+
+    img {
+        width: 100%;
+        height: auto;
+    }
+}
+
+@media (min-width: 577px) and (max-width: 991px) {
+
+    .col-8.offset-2 {
+        width: 90%;
+        margin: auto;
+        padding: 1.5rem;
+    }
+
+    .form-control {
+        padding: 0.7rem;
+    }
+
+    img {
+        max-height: 250px;
+        object-fit: cover;
+    }
+
+    .edit-btn {
+        padding: 0.7rem 1.5rem;
+    }
+}
+
+@media (min-width: 992px) {
+
+    .col-8.offset-2 {
+        max-width: 700px;
+        margin: auto;
+    }
+}
