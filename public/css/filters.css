@@ -1,110 +1,102 @@
 .filters-container{
-            display:flex;
-            align-items:center;
-            justify-content:space-between;
-            gap:1rem;
-        }
-        #filters {
-            display: flex;
-            align-items: center;
-            overflow-x: auto;
-            scrollbar-width: none;
-            white-space: nowrap;
-            flex: 1;
-        }
-        #filters::-webkit-scrollbar {
-             display: none;
-        }
-        .filter {
-            flex-shrink: 0;
-            text-align: center;
-            margin-right: 2rem;
-            margin-top: 2rem;
-            opacity: 0.7;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
 
-             text-decoration: none;
-             color: inherit;
-             color: inherit;
-        }
-        
-        .filter:hover {
-            opacity: 1;
-            cursor: pointer;
-        }
-        .filter p {
-            font-size: 0.8rem;
-        }
+#filters{
+    display: flex;
+    align-items: center;
+    flex: 1;
+    overflow-x: auto;
+    white-space: nowrap;
+    scrollbar-width: none;
+    min-width: 0;
+}
 
-        .tax-info{
-            display: none;
-        }
+#filters::-webkit-scrollbar{
+    display: none;
+}
 
-        .tax-toggle {
-             flex-shrink: 0;
-            border: 1px solid black;
-            border-radius: 1rem;
-            height: 3rem;
-            padding: 1rem;
-            margin-left: auto;
-            display: flex;
-            align-items: center;
+.filter{
+    flex: 0 0 auto;
+    text-align: center;
+    margin-right: 2rem;
+    margin-top: 2rem;
+    opacity: 0.7;
+    text-decoration: none;
+    color: inherit;
+}
 
-        }
-        .scroll-btn{
-            width:40px;
-            height:40px;
-            border-radius:50%;
-            border:1px solid #ddd;
-            background:#fff;
-            cursor:pointer;
-            display:flex;
-            justify-content:center;
-            align-items:center;
-            margin:0 1rem;
-        }
+.filter:hover{
+    opacity: 1;
+    cursor: pointer;
+}
 
-        .scroll-btn:hover{
-             box-shadow:0 2px 8px rgba(0,0,0,.2);
-        }
+.filter p{
+    font-size: 0.8rem;
+}
 
-        @media (max-width: 768px) {
+.tax-info{
+    display: none;
+}
 
-    .filters-container {
-        display: flex;
-        align-items: center;
-        gap: 0.5rem;
+.tax-toggle{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    border: 1px solid black;
+    border-radius: 1rem;
+    height: 3rem;
+    padding: 0 1rem;
+    width: 220px;
+}
+
+.scroll-btn{
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 1px solid #ddd;
+    background: #fff;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-shrink: 0;
+}
+
+.scroll-btn:hover{
+    box-shadow: 0 2px 8px rgba(0,0,0,.2);
+}
+
+@media (max-width:768px){
+
+    .filters-container{
+        flex-wrap: wrap;
+        gap: 0.8rem;
     }
 
-    #filters {
-        display: flex;
-        flex: 1;
-        overflow-x: auto;
-        white-space: nowrap;
-        scrollbar-width: none;
-        -webkit-overflow-scrolling: touch;
+    #filters{
+        width: 100%;
+        order: 1;
     }
 
-    #filters::-webkit-scrollbar {
-        display: none;
+    .tax-toggle{
+        width: 100%;
+        order: 2;
+        margin: 0;
+        height: auto;
+        padding: 0.8rem 1rem;
     }
 
-    .filter {
-        flex: 0 0 auto;
-        margin-right: 1rem;
-        margin-top: 1rem;
-    }
-
-    .scroll-btn {
-        display: flex;
+    .scroll-btn{
         width: 35px;
         height: 35px;
-        justify-content: center;
-        align-items: center;
-        margin: 0;
-        flex-shrink: 0;
     }
 
-    .tax-toggle {
-        display: none;
+    .filter{
+        margin-right: 1rem;
+        margin-top: 1rem;
     }
 }
