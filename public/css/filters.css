@@ -66,3 +66,45 @@
         .scroll-btn:hover{
              box-shadow:0 2px 8px rgba(0,0,0,.2);
         }
+
+        @media (max-width: 768px) {
+
+    .filters-container {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+    }
+
+    #filters {
+        display: flex;
+        flex: 1;
+        overflow-x: auto;
+        white-space: nowrap;
+        scrollbar-width: none;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    #filters::-webkit-scrollbar {
+        display: none;
+    }
+
+    .filter {
+        flex: 0 0 auto;
+        margin-right: 1rem;
+        margin-top: 1rem;
+    }
+
+    .scroll-btn {
+        display: flex;
+        width: 35px;
+        height: 35px;
+        justify-content: center;
+        align-items: center;
+        margin: 0;
+        flex-shrink: 0;
+    }
+
+    .tax-toggle {
+        display: none;
+    }
+}
