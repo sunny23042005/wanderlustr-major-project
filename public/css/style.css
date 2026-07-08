@@ -92,6 +92,7 @@ body{
 .edit-btn {
      background-color: #fe424d !important;
      border: none;
+      width: auto;
 
 }
 
@@ -104,6 +105,15 @@ body{
 
 .btns {
     display: flex;
+    gap: 12px;
+    margin-left: 25%;
+    margin-bottom: 1rem;
+}
+@media (max-width: 576px){
+    .btns{
+        margin-left: 0;
+        justify-content: center;
+    }
 }
 
 .show-card {
